@@ -743,7 +743,7 @@ const App = () => {
   const handleSubmit = async(postTitle,postBody) =>
   {
     const id = posts.length ? String(Number(posts[posts.length-1].id) + 1): "1"
-    const datetime = format(new Date,'MMMM dd,yyyy pp')
+    const datetime = format(new Date(),'MMMM dd,yyyy pp')
     const asObj = {id:id,title:postTitle,datetime:datetime,body:postBody}
 
     const responses = await api.post('/posts',asObj)
@@ -775,7 +775,7 @@ const App = () => {
   const handleEdit = async(id) =>
   {
     
-    const datetime = format(new Date,'MMMM dd yyyy pp')
+    const datetime = format(new Date(),'MMMM dd yyyy pp')
     const asObj = {id:id,title:editTitle,datetime:datetime,body:editBody}
     
     console.log(asObj)
