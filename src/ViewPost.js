@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 
 const ViewPost = ({posts,handleDelete}) => {
     const {id} = useParams()
-    const post = posts.find(post => post.id == id)
+    const post = posts.find(post => post.id === id)
   return (
     <div>
         <article className='post'>
