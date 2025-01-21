@@ -18,10 +18,7 @@ const EditPost = ({posts,editTitle,setEditTitle,editBody,setEditBody,handleEdit}
   return (
     <div className='newpost' >
         <h2>Edit Post</h2>
-
-        { post && 
-        <>
-        <form action="" className='navigation' onSubmit={(e)=> e.preventDefault()}>
+        <form action="" className='navigation' onSubmit={(e) => e.preventDefault()}>
             <input 
             type="text"
             placeholder='Title'
@@ -34,10 +31,9 @@ const EditPost = ({posts,editTitle,setEditTitle,editBody,setEditBody,handleEdit}
             >
             </textarea>
             <button
-            onClick={() => handleEdit(id,editTitle,editBody)}
+            onClick={(e) => handleEdit(id,editTitle,editBody)}
             >Submit</button>
         </form>
-        </>}
     </div>
   )
 }

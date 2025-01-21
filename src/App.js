@@ -677,30 +677,30 @@ const App = () => {
   const [posts,setPosts] = useState([])
   // const [posts,setPosts] = useState(
   //   [
-  //     {
-  //       id: 1,
-  //       title: "My First Post",
-  //       datetime: "July 01, 2021 11:17:36 AM",
-  //       body: "Made a video about Tesla Q1 results"
-  //     },
-  //     {
-  //       id: 2,
-  //       title: "My 2nd Post",
-  //       datetime: "July 01, 2021 11:17:36 AM",
-  //       body: "I attended a DeFi blockchain event"
-  //     },
-  //     {
-  //       id: 3,
-  //       title: "My 3rd Post",
-  //       datetime: "July 01, 2021 11:17:36 AM",
-  //       body: "Web3 global summit next week"
-  //     },
-  //     {
-  //       id: 4,
-  //       title: "My Fourth Post",
-  //       datetime: "July 01, 2021 11:17:36 AM",
-  //        body: "ETH will outperform BTC"
-  //     }
+      // {
+      //   id: 1,
+      //   title: "My First Post",
+      //   datetime: "July 01, 2021 11:17:36 AM",
+      //   body: "Made a video about Tesla Q1 results"
+      // },
+      // {
+      //   id: 2,
+      //   title: "My 2nd Post",
+      //   datetime: "July 01, 2021 11:17:36 AM",
+      //   body: "I attended a DeFi blockchain event"
+      // },
+      // {
+      //   id: 3,
+      //   title: "My 3rd Post",
+      //   datetime: "July 01, 2021 11:17:36 AM",
+      //   body: "Web3 global summit next week"
+      // },
+      // {
+      //   id: 4,
+      //   title: "My Fourth Post",
+      //   datetime: "July 01, 2021 11:17:36 AM",
+      //    body: "ETH will outperform BTC"
+      // }
   // ])
 
   useEffect( () =>
@@ -742,7 +742,7 @@ const App = () => {
 
   const handleSubmit = async(postTitle,postBody) =>
   {
-    const id = posts.length ? String(Number(posts[posts.length-1].id) + 1): 1
+    const id = posts.length ? String(Number(posts[posts.length-1].id) + 1): "1"
     const datetime = format(new Date,'MMMM dd,yyyy pp')
     const asObj = {id:id,title:postTitle,datetime:datetime,body:postBody}
 
@@ -751,6 +751,8 @@ const App = () => {
     const post = [...posts,responses.data]
     setPosts(post)
     navigate('/')
+    setPostTitle('')
+    setPostBody('')
   }
 
   const handleDelete = async(id) =>
@@ -763,6 +765,7 @@ const App = () => {
       await api.delete(`/posts/${String(id)}`)
       setPosts(final)
       navigate('/')
+
     }catch(err)
     {
       console.log(err)
@@ -771,6 +774,7 @@ const App = () => {
 
   const handleEdit = async(id) =>
   {
+    
     const datetime = format(new Date,'MMMM dd yyyy pp')
     const asObj = {id:id,title:editTitle,datetime:datetime,body:editBody}
     
@@ -779,13 +783,18 @@ const App = () => {
     {
       const res = await api.put(`/posts/${String(id)}`,asObj)
       console.log(res.data)
+      setEditTitle('')
+      setEditBody('')
       setPosts(posts.map( post => post.id === id ? {...res.data}:post))
       navigate('/')
+      
     }catch(err)
     {
       console.log(err)
     }
   }
+
+  
 
   return (
     <div>
