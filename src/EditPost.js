@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 const EditPost = ({posts,editTitle,setEditTitle,editBody,setEditBody,handleEdit}) => {
     const {id} = useParams()
-    const post = posts.find(post => post.id == id)
+    const post = posts.find(post => post.id === id)
     // console.log(post)
 
     useEffect( () =>
